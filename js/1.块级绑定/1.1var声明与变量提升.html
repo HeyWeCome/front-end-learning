@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+使用 var 关键字声明的变量，无论其实际声明的位置在何处，都会被视为声明于所在函数的顶部（如果声明不在任意函数中，则视为在全部作用域的顶部）。
+这就是所谓的变量提升（hoisting）。
+为了说明变量提升的含义，参考如下函数定义：
+
+<script>
+  function getValue(condition){
+    if(condition) {
+      var value = "blue";
+      
+      // 其他代码
+      
+      return value;
+    } else {
+      // value 在此处可以访问到，值为 undefined
+      return null;
+    }
+    
+    // value 在此处可以访问到，值为 undefined
+  }
+
+  /**
+   * 可以看出来，无论如何这个 value 都是会被创建的，无论值是不是true
+   * 原因如下：
+   * 实际上 JS 引擎在后台对 getValue 函数进行了调整，如下：
+   */
+  function getValue(condition){
+    var value;
+    
+    if (condition) {
+      value = "blue";
+      
+      // 其他代码
+      return value;
+    } else {
+      return null;
+    }
+  }
+
+  /**
+   * value 变量的声明被提升到了顶部，初始化工作则保留在本地。
+   * 这也就意味着 else 分支中 value 变量是可以访问的，但是是 undefined , 因为它并没有初始化
+   */
+
+  // 也就是说
+</script>
+</body>
+</html>
