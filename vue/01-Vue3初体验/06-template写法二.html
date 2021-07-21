@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>计数器</title>
+</head>
+<body>
+  <div id="app"></div>
+  
+  <template id="heywecome">
+    <div>
+      <h2>{{count}}</h2>
+      <button @click="increment">+1</button>
+      <button @click="decrement">-1</button>
+    </div>
+  </template>
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: "#heywecome",
+      data: function () {
+        return {
+          count: 100
+        }
+      },
+      // 定义各种方法
+      methods: {
+        increment() {
+          this.count++;
+        },
+        decrement() {
+          this.count--;
+        }
+      }
+    }).mount("#app");
+  </script>
+</body>
+</html>
