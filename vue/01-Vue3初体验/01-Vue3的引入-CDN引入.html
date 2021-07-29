@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+    <h2>欢迎来到Vue3！</h2>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const heywecome = {
+      template: '<h2>Hello World</h2>'
+    };
+
+    // createApp 需要传入一个对象
+    const app = Vue.createApp(heywecome);
+    // 挂载到元素上
+    app.mount("#app");
+  </script>
+</body>
+</html>
