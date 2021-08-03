@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <div :class="['abc', title]">数组绑定</div>
+    <!-- 也支持三元运算符 -->
+    <div :class="['abc', title, isActive ? 'active':'']">数组绑定三元运算符</div>
+    <!-- 数组中嵌套对象 -->
+    <div :class="['abc', title, {active: isActive}]">数组绑定对象</div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: 'Hello World',
+          title: 'cba',
+          isActive: true,
+        }
+      }
+    }
+
+    // 绑定app
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>
