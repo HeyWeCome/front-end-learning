@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+  .test {
+    width: 100px;
+    height: 200px;
+    background-color: blue;
+  }
+</style>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- v-on的基础用法 -->
+    <button v-on:click="btn1Click">按钮一</button>>
+
+    <!-- v-on的语法糖 -->
+    <button @click="btn1Click">按钮二</button>>
+
+    <!-- 绑定多个事件 -->
+    <div class="test" v-on="{click:btn1Click, mousemove:mouseMove}">jjjjj</div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return{ 
+          message: 'Hello World'
+        }
+      },
+      methods: {
+        btn1Click() {
+          console.log("btn1点击事件");
+        },
+        mouseMove() {
+          console.log("移动");
+        }
+      }
+    }
+
+    // 绑定app
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>
