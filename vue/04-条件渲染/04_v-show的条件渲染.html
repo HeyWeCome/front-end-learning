@@ -10,14 +10,7 @@
   <div id="app"></div>
 
   <template id="my-app">
-    <!-- 使用template包裹可以现实的时候不显示template -->
-    <template v-if="isShow">
-      <h1>哈哈哈哈哈哈哈</h1>
-    </template>
-
-    <template v-else>
-      <h2>呵呵呵呵</h2>
-    </template>
+    <h2 v-show="isShow">hello world</h2>
   </template>
 
   <script src="../js/vue.js"></script>
@@ -25,8 +18,9 @@
     const App = {
       template: '#my-app',
       data() {
-        return {
-          isShow: true,
+        return{ 
+          message: 'Hello World',
+          isShow: true
         }
       }
     }
