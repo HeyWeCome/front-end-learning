@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <h2>{{ fullName }}</h2>
+    <h2>{{ result }}</h2>
+    <h2>{{ reverseMessage }}</h2>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return{ 
+          firstName: "Kobe",
+          lastName: "Bryant",
+          score: 80,
+          message: 'Hello World'
+        }
+      },
+      // 计算属性是有缓存的，当我们多次使用计算属性时，计算属性中的运算只会执行一次
+      // 计算属性会基于它们的依赖关系进行缓存；
+      // 在数据不发生变化时，计算属性是不需要重新计算的；
+      // 如果依赖的数据发生变化，在使用时，计算属性依然会重新进行计算。
+      computed: {
+        fullName() {
+          return this.firstName + " " + this.lastName;
+        },
+        result() {
+          return this.score > 60 ? "及格":"不及格";
+        },
+        reverseMessage() {
+          return this.message.split(" ").reverse().join(" ");
+        }
+      },
+      methods: {
+
+      }
+    }
+
+    // 绑定app
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>
