@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <h1>{{info.name + " "+ info.age}}</h1>
+    <button @click="changeInfo()">改变</button>
+    <button @click="changeName()">改变info.name</button>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return{ 
+          info: {
+            name: "He",
+            age: 19
+          }
+        }
+      },
+      watch: {
+        // 这样就可以只监听 info 的 name 属性
+        "info.name": function(newValue, oldName) {
+          console.log(newValue, oldName);
+        }
+      },
+      methods: {
+        changeInfo() {
+          this.info = {name: "heywecome"};
+        },
+        changeName() {
+          this.info.name = "kobe";
+        }
+      },
+      created() {
+        this.$watch("info", function(newInfo, oldInfo) {
+          console.log(newInfo, oldInfo);
+        }, {
+          deep: true,
+          immediate: true
+        })
+      }
+    }
+
+    // 绑定app
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>

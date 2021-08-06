@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <h1>{{info.name + " "+ info.age}}</h1>
+    <button @click="changeInfo()">改变</button>
+    <button @click="changeName()">改变info.name</button>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return{ 
+          info: {
+            name: "He",
+            age: 19
+          }
+        }
+      },
+      watch: {
+        // 默认情况下，侦听器只会针对监听的数据本身的改变（内部发生的改变是不能侦听的）
+        // info(newValue, oldValue) {
+        //   console.log('oldValue:',oldValue, 'newValue', newValue);
+        // }
+
+        // 深度侦听
+        info: {
+          // 这样写和上面一样
+          // oldInfo 和 newInfo 都是引用的同一个地址，所以旧的值取出来和新的值是一样的
+          // 如果想要旧的值，在执行的时候就需要自己先拷贝一份
+          handler: function(newInfo, oldInfo) {
+            console.log('oldValue:',newInfo, 'newValue', oldInfo);
+          },
+          deep: true, // 开启深度侦听，这样的话里面的侦听也可以被捕获到
+          // immediate: true // 立即执行，这是两个常用的配置项
+        }
+      },
+      methods: {
+        changeInfo() {
+          this.info = {name: "heywecome"};
+        },
+        changeName() {
+          this.info.name = "kobe";
+        }
+      }
+    }
+
+    // 绑定app
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>
