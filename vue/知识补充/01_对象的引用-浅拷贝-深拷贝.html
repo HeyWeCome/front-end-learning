@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <!-- 1.对象的引用复制 -->
+  <script>
+    // 对象是引用类型，指向的是同一块内存地址
+    // const info = {name: "why", age: 18};
+    // const obj = info;
+    // info.name = "kang";
+    // console.log(obj.name);
+  </script>
+
+  <!-- 2.对象的浅拷贝 -->
+  <script>
+    const info = {name: "why", age: 18, friend: {name: "kobe"}};
+    // 这里的意思就是把 info 的值复制一份返回给{{}},然后使用 obj 来接受它
+    // 但是 obj.friend 中的值指向的是 info 的内存地址
+    // 所以可以通过 obj.friend.xxx 来修改 info 的值
+    const obj = Object.assign({}, info);
+
+    info.name = "kobe";
+    console.log(obj.name); // 结果为 why，但是只是浅拷贝
+
+    info.friend.name = "james";
+    console.log(obj.friend.name); // 结果为 james
+  </script>
+
+  <!-- 3.深度拷贝 -->
+  <script>
+    const info = {name: "why", age: 18, friend: {name: "kobe"}};
+    // JSON.stringify 把 info 信息转化为字符串
+    // JSON.parse 把字符串转化成为对象
+    // 这样就会重新赋值一个新的地址
+    const obj = JSON.parse(JSON.stringify(info));
+  </script>
+
+  <!-- 这个库可以用来执行一些操作 -->
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>
+    const info = {name: "why", age: 18, friend: {name: "kobe"}};
+    // 实现浅度拷贝
+    const obj = _.clone(info);
+    // 实现深度拷贝
+    const obj1 = _.cloneDeep(info);
+    
+  </script>
+</body>
+</html>
