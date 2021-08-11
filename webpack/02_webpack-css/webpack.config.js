@@ -13,8 +13,10 @@ module.exports = {
         // 1.loader的写法（语法糖）
         // loader: "css-loader"
         // loader其实是语法糖，完整写法：
-        use: [
+        
+        use: [ // 写在后面的 loader 先加载
           // {loader: "css-loader"},
+          "style-loader",
           "css-loader"
         ]
       }
