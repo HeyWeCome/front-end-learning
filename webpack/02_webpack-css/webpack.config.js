@@ -17,7 +17,8 @@ module.exports = {
         use: [ // 写在后面的 loader 先加载
           // {loader: "css-loader"},
           "style-loader",
-          "css-loader"
+          "css-loader",
+          "postcss-loader"
         ]
       },
       {
@@ -26,8 +27,7 @@ module.exports = {
           // {loader: "css-loader"},
           "style-loader",
           "css-loader",
-          "less-loader",
-          
+          "less-loader"
         ]
       }
     ]
