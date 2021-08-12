@@ -32,8 +32,10 @@ module.exports = {
       },
       {
         // 图片资源
-        test: /\.(jpg|png|gif|svg|jpe?g)/,
-        use: "file-loader"
+        test: /\.(jpg|png|gif|svg|jpe?g)$/i,
+        use: {
+          loader:"file-loader"
+        }
       }
     ]
   }
