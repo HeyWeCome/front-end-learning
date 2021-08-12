@@ -34,7 +34,11 @@ module.exports = {
         // 图片资源
         test: /\.(jpg|png|gif|svg|jpe?g)$/i,
         use: {
-          loader:"file-loader"
+          loader:"file-loader",
+          options: {
+            // outputPath: "img", // 打包之后图片存放的地址,可以直接合并到name中
+            name: "img/[name]_[hash:6].[ext]"
+          }
         }
       }
     ]
