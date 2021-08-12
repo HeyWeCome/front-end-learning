@@ -4,7 +4,8 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "./build"), // 必须是绝对路径
-    filename: "bundle.js" // 打包之后的名字
+    filename: "bundle.js", // 打包之后的名字
+    // assetModuleFilename: "img/[name]_[hash:6][ext]"
   },
   module: {
     rules: [
@@ -30,16 +31,28 @@ module.exports = {
           "less-loader"
         ]
       },
+      // {
+      //   // 图片资源
+      //   test: /\.(jpg|png|gif|svg|jpe?g)$/i,
+      //   use: {
+      //     loader:"url-loader",
+      //     options: {
+      //       // outputPath: "img", // 打包之后图片存放的地址,可以直接合并到name中
+      //       name: "img/[name]_[hash:6].[ext]",
+      //       // 小于100KB的变成Base64，大的不变
+      //       limit: 100 * 1024
+      //     }
+      //   }
+      // }
       {
-        // 图片资源
         test: /\.(jpg|png|gif|svg|jpe?g)$/i,
-        use: {
-          loader:"url-loader",
-          options: {
-            // outputPath: "img", // 打包之后图片存放的地址,可以直接合并到name中
-            name: "img/[name]_[hash:6].[ext]",
-            // 小于100KB的变成Base64，大的不变
-            limit: 100 * 1024
+        type: "asset",
+        generator: {
+          filename: "img/[name]_[hash:6][ext]"
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 100 * 1024
           }
         }
       }
